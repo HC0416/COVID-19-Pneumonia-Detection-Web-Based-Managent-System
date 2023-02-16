@@ -1,0 +1,84 @@
+{% extends "Pneumonia_App/layout.html" %}
+
+{% block body %}
+
+    
+
+    <div class = "update" id="update">
+
+
+        <form action="/updateDB/{{ patient.id }}" method="post" onsubmit="return submit()" enctype="multipart/form-data" id="post-form">
+            
+            {% for message in messages %}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>{{message}}</strong> 
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+            
+    
+            {% csrf_token %}
+            <a href="{% url 'viewDB' %}" class ="backIcon"><i class="fa-solid fa-circle-left"></i>BACK</a><br>
+
+            <h1>Patient Information</h1>
+
+            <h2>Patient ID: &nbsp; {{patient.PatientID}}</h2>
+            <br>
+
+            <h2>Name: &nbsp; {{patient.PatientName}}</h2>
+            <br>
+
+            <h2>Gender: &nbsp;{{patient.PatientGender}}</h2>
+            <br>
+
+            <h2>Age: &nbsp;{{patient.PatientAge}}</h2>
+            <br>
+
+            <label for="phone" class="phoneLabel" name="phoneLabel"><b>Phone:</b></label>
+            <input id=phone name= "phone" type="text" value={{patient.PatientPhone}} class="box">
+            <br><br>
+
+            <h2>Predicted Label: &nbsp;{{patient.PatientPredictedLabel}}</h2><br><br>
+
+            <img width= "900" height= "400" src="{{ patient.Patient_X_Ray_Heatmap.url }}" alt="" class="prod-size"><br>
+
+            <label for="remark" class="remarkLabel" name="remarkLabel"><b>Remark:</b></label>
+            <input id=remark name="remark" type="text" value="{{ patient.PatientRemark }}" class="box">
+            <br><br>
+
+
+            <!-- <input id=status name="status" type="text" value="{{ patient.PatientStatus }}" class="box"><br><br>  -->
+            
+            <div class = "updateStatus">
+                <label for="status" class="statusLabel" name="statusLabel"><b>Status:</b></label>
+
+                <select id="status" name="status" class="box">
+                    <option class="optionValue" value="{{ patient.PatientStatus }}">{{ patient.PatientStatus }}</option>
+    
+                    {% if patient.PatientStatus == "ACTIVE" %}
+                        <option class="optionValue" value="RECOVERED">RECOVERED</option>
+                        <option class="optionValue" value="DECEASED">DECEASED</option>
+                    {% elif patient.PatientStatus == "RECOVERED" %}
+                        <option class="optionValue" value="ACTIVE">ACTIVE</option>
+                        <option class="optionValue" value="DECEASED">DECEASED</option>
+                    {% elif patient.PatientStatus == "DECEASED" %}
+                        <option class="optionValue" value="ACTIVE">ACTIVE</option>
+                        <option class="optionValue" value="RECOVERED">RECOVERED</option>
+                    {% endif %}
+                </select>
+                <br><br>
+
+            </div>
+            
+            
+            <div class = "updateButton">
+                <input type="submit" value="Update" class="btn">
+            </div>
+        </form>
+
+    </div>
+    <br><br>
+    
+{% endblock %}
