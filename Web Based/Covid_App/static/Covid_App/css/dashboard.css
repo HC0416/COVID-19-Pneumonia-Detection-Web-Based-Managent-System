@@ -1,0 +1,20 @@
+.genderDashboard, .labelDashboard{
+    /* padding-top: 5rem; */
+    background: white;
+    border-radius: 2rem;
+    
+}
+
+.ageDashboard, .statusDashboard{
+    background: white;
+    border-radius: 2rem;
+    
+}
+
+.dashboard .genderDashboard{
+    width: 60%;
+}
+
+
+
+
