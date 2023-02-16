@@ -1,0 +1,125 @@
+{% extends "Pneumonia_App/layout.html" %}
+
+{% block body %}
+    <div class="viewDB" id="viewDB">
+
+        {% for message in messages %}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>{{message}}</strong> 
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+        <table class="styled-table">
+            
+            <thead>
+                <tr>
+                <th>Patient ID</th>
+                <th>Patient Name</th>
+                <th>Patient Gender</th>
+                <th>Patient Age</th>
+                <th>Predicted Label</th>
+                <th>X-Ray</th>
+                <th>Status</th>
+                <th>Action</th>
+                </tr>
+            </thead>
+    
+            {% for l in list %}
+            <tbody> 
+                <tr>
+                    <td>{{ l.PatientID }}</td>
+                    <td>{{ l.PatientName }}</td>
+                    <td>{{ l.PatientGender }}</td>
+                    <td>{{ l.PatientAge }}</td>
+                    <td>{{ l.PatientPredictedLabel }}</td>
+    
+                    <td>
+                        <img width= "230" height= "130" src="{{ l.Patient_X_Ray_Heatmap.url }}" alt="{{l.Patient_X_Ray_Heatmap}}" class="prod-size">
+                    </td>
+
+                    {% if l.PatientStatus == "RECOVERED" %}
+                        <td style="color: green;">{{ l.PatientStatus }}</td>
+
+                    {% elif l.PatientStatus == "ACTIVE"%}
+                        <td style="color: orange;">{{ l.PatientStatus }}</td>
+
+                    {% elif l.PatientStatus == "DECEASED"%}
+                        <td style="color: red;">{{ l.PatientStatus }}</td>
+
+                    {% elif l.PatientStatus == "SAFE"%}
+                        <td style="color: green;">{{ l.PatientStatus }}</td>
+
+                    {% endif %}
+                    <!-- <td>{{ l.PatientStatus }}</td> -->
+
+                    <td>
+                        <!-- <a href="/updateDB/{{ l.id }}">Update</a> -->
+                        <div class = "viewIcon">
+                            <a href="/viewInfo/{{ l.id }}" class ="logo"><i class="fa-solid fa-eye"></i></a>
+                            <a href="/updateDB/{{ l.id }}" class ="logo"><i class="fa-solid fa-pen-to-square"></i></a>
+                            <!-- <a href="/delete/{{ l.id }}" class ="logo2" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa-solid fa-trash"></i></a> -->
+                            <a href="#" class ="logo2" data-toggle="modal" data-target="#exampleModalCenter-{{l.id}}"><i class="fa-solid fa-trash"></i></a>
+
+                            <div class="modal fade" id="exampleModalCenter-{{l.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="exampleModalLongTitle">Delete</h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Confirm to Delete? 
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                      <a class="btn btn-sm btn-danger" href="{% url 'delete' l.id %}">Delete</a>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                        
+                            <!-- Modal -->
+                            <!-- <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Delete</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Confirm to Delete? 
+                                    </div>
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+
+                                    <div class="deletePop">
+                                        <a href="/delete/{{ l.id }}" type="button" class="btn btn-primary">Confirm</a>
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div> -->
+                        
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+
+            
+            {% endfor %}
+        </table>
+
+        
+
+    </div>
+
+
+</html>
+
+{% endblock %}

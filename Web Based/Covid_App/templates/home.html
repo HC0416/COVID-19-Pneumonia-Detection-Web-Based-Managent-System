@@ -1,0 +1,173 @@
+{% extends "Pneumonia_App/layout.html" %}
+{% load static %}
+
+{% block body %}
+
+
+    <section class="home" id="home">
+        {% for message in messages %}
+
+            <script>
+                alert('{{ message }}');
+            </script>
+        {% endfor %}
+
+        <div class = "image">
+            <!-- <img src="{% static 'Pneumonia_App/media/home-img.svg' %}" alt="" class="prod-size"> -->
+            <img src="{% static 'Pneumonia_App/media/covid19-cell.gif' %}" alt="" class="prod-size">
+
+        </div>
+
+        <div class = "content">
+            <h3>What is COVID-19?</h3>
+            <p><b>Coronavirus disease (COVID-19)</b> is an infectious disease caused by the SARS-CoV-2 virus.</p>
+            <!-- <br> -->
+            <p>Most people who fall sick with COVID-19 will experience mild to moderate symptoms and recover without special treatment. 
+                However, some will become seriously ill and require medical attention.</p>
+        </div>
+    </section>
+
+    <h1>COVID-19 Cases in Malaysia on {{ yesterday }}</h1>
+
+    <section class="icons-container">
+
+        {% for c in countries %}
+                {% if c.Country == "Malaysia" %}
+
+                    <div class = "icons">
+                        <i class="fas fa-user"></i>
+                        <h3>{{ c.NewConfirmed }}</h3>
+                        <p>New Confirmed Cases</p>
+                    </div>
+
+                    <div class = "icons">
+                        <i class="fas fa-users"></i>
+                        <h3>{{ c.TotalConfirmed }}+</h3>
+                        <p>Total Confirmed Cases</p>
+                    </div>
+
+                    <div class = "icons">
+                        <i class="fa-solid fa-face-dizzy"></i>
+                        <!-- <i class="fas fa-user-md"></i> -->
+                        <h3>{{ c.NewDeaths }}</h3>
+                        <p>New Deaths Cases</p>
+                    </div>
+
+                    <div class = "icons">
+                        <i class="fa-solid fa-book-skull"></i>
+                        <!-- <i class="fas fa-user-md"></i> -->
+                        <h3>{{ c.TotalDeaths }}</h3>
+                        <p>Total Deaths Cases</p>
+                    </div>
+
+                    
+                
+                {% endif %}
+        {% endfor %}
+
+    </section>
+
+    <section class = "solution" id = "solution">
+        <h1 class = "heading"><span>To Prevent the spread of</span> COVID-19</h1>
+
+        <div class = "box-container">
+
+            <div class = "box">
+                <i class="fa-solid fa-people-arrows"></i>
+                <h3>Social Distance</h3>
+                <p>Maintain a safe distance from others (at least 1 metre), even if they don’t appear to be sick.</p>
+            </div>
+
+            <div class = "box">
+                <i class="fa-solid fa-head-side-mask"></i>
+                <h3>Wear a Mask</h3>
+                <p>Wear a mask in public, especially indoors or when physical distancing is not possible.</p>
+            </div>
+
+            <div class = "box">
+                <i class="fa-solid fa-door-open"></i>
+                <h3>Ensure Proper Ventilation</h3>
+                <p>Choose open, well-ventilated spaces over closed ones. Open a window if indoors.</p>
+            </div>
+
+            <div class = "box">
+                <i class="fa-solid fa-hands-bubbles"></i>
+                <h3>Wash Hands</h3>
+                <p>Clean your hands often. Use soap and water, or an alcohol-based hand rub.</p>
+            </div>
+
+            <div class = "box">
+                <i class="fa-solid fa-syringe"></i>
+                <h3>Get Vaccination</h3>
+                <p>Get vaccinated when it’s your turn. Follow local guidance about vaccination.</p>
+            </div>
+
+            <div class = "box">
+                <i class="fa-solid fa-head-side-cough-slash"></i>
+                <h3>Cover your nose or mouth</h3>
+                <p>Cover your nose and mouth with your bent elbow or a tissue when you cough or sneeze.</p>
+            </div>
+
+            <div class = "box">
+                <i class="fa-solid fa-house"></i>
+                <h3>Stay Home</h3>
+                <p>Stay home if you feel unwell.</p>
+            </div>
+
+        </div>
+
+
+    </section>
+
+    <section class="about" id="about">
+        <h1 class="heading"> <span>about</span> us </h1>
+
+        <div class="row">
+
+            <div class="image">
+                <img src="{% static 'Pneumonia_App/media/about-img.svg' %}" alt="">
+            </div>
+    
+            <div class="content">
+                <h3>we take care of your healthy life</h3>
+                <p><b>Klinik Oceana</b> is located inside Asia Pacific University of Technology & Innovation (APU) in Technology Park Malaysia, Bukit Jalil. It is one-stop centre dedicated to offer the best experience ensuring your health and well-being are not comprised.</p>
+                <p>Our multidisciplinary teams of health experts are devoted to support APU students, staff and the community from surrounding areas (Sri Petaling, Bukit Jalil, Sri Kembangan, OUG, Kinrara etc) with a wide range of medical services from routine health examinations to full body x-ray imaging etc.</p>
+                <!-- <p>Established in April 2001, MedCare. is a Malaysia Council on Healthcare Standards (ACHS) accredited private hospital located in Malaysia. </p> -->
+                <p>The coronavirus disease 2019 (COVID-19) which started to spread around the whole world at the end of 2019 had a significantly made an impact on us. Pneumonia had also been detected in 
+                    hospitalized patients which had tested positive in COVID-19. This is still raging in many of the nations which have caused a major loss to people’s lives and property. </p>
+                <p>In order to combat with COVID-19 Pneumonia, Klink Oceana had developed a machine learning system which is able to read the images of the X-Ray and made predicion if the COVID-19 or Pneumonia is presence.</p>
+                <p>Feel free to reach us out to make an appointment!</p>
+                <!-- <a href="#" class="btn"> learn more <span class="fas fa-chevron-right"></span> </a> -->
+            </div>
+    
+        </div>
+
+    </section>
+
+    <section class="book" id="book">
+        
+
+        <h1 class="heading"> <span>book</span> now </h1>    
+    
+        <div class="row">
+    
+            <div class="image">
+                
+                <img src="{% static 'Pneumonia_App/media/book-img.svg' %}" alt="">
+            </div>
+    
+            <form action="", method="post" id="apppointment-form" name="apppointment-form" onsubmit="return appointmentValidation()">
+                {% csrf_token %}
+                <h3>book appointment</h3>
+                <input type="text" placeholder="Full Name" id = "name" name ="name"class="box">
+                <input type="number" placeholder="Phone Number" id= "Pnumber" name= "Pnumber" class="box">
+                <input type="email" placeholder="Email Address" id= "email" name= "email" class="box">
+                <!-- <input type="date" class="box"> -->
+                <input  type="submit" value="book now" class="btn">
+            </form>
+    
+        </div>
+    
+    </section>
+
+{% endblock %}
