@@ -45,7 +45,24 @@ a) Convert the image to 155 x 155 pixel size
 | Batch Size | 32 |
 | Epochs | 200 |
 
+## Result and Discussion
 
+### Evaluation Metrics
+1. Validation & Learning Curve
+
+For the accuracy model, it can be observed that the training accuracy gradually increases from epoch 0 to epoch 3. After the 12 epochs, it had reached a steady rate of accuracy throughout the 200 epochs within the range of accuracy from 90% to 94%. As for the validation accuracy, the accuracy was very low during the beginning. This was mainly due to the fact that the model was not fully capable to predict the outcomes yet as the model had only been trained with only a few epochs of datasets. More epochs are needed to train the model in order to enhance the performance of the model. This can be shown from the figure where the validation accuracy has begun to increase as the number of epochs increases. Although the validation accuracy was slightly fluctuating, nevertheless the accuracy was stable enough along the epochs within a range of 94% to 75%. Besides, the developer thinks that it is the most optimum parameter tuning for the model. Therefore, the developer is satisfied with 
+the result.As for the model loss, it can be observed that the training loss had reached a steady rate of loss from the beginning throughout the 200 epochs within a range of 0.15 to 0.14. As for the validation loss, the model was fluctuating at the beginning. This was also due to the model not capable of predicting the outcome with only a few epochs of datasets. After 34 epochs, the validation loss had reached a steady rate of 0.8 to 0.5 until 200 epochs even though slight fluctuations occurred.
+
+2. Accuracy Score
+The accuracy of the model is able to achieve a satisfying accuracy score of 94.65%.
+
+3. Confusion Matrix
+
+The column values will serve as predicted values and the row values will serve as actual values. For the first row, which is NORMAL value, the model was able to predict 834 of X-ray images correctly and 52 of THE Xray incorrectly (48 PNEUMONIA & 4 COVID). For the second row, which is PNEUMONIA, the model is able to predict 571 of X-ray images correctly and 31 of the images were predicted as NORMAL. Lastly, which is COVID-19 on the third row, the model is able to predict 98 of the Xray images correctly and 2 of the images incorrectly (1 NORMAL & 1 PNEUMONIA).Looking at the NORMAL column, 866 of the X-ray images had been predicted as NORMAL. 
+Among the 866 predicted values, 32 of them were incorrectly predicted (31 PNEUMONIA & COVID). For the PNEUMONIA column, 620 of the X-rays images had been predicted as 
+PNEUMONIA. 571 images were predicted correctly and 49 were predicted incorrectly (48 NORMAL & 1 COVID). Last but not least, which is the COVID-19 column, 102 of the X-ray images had been predicted as COVID. 98 images were predicted correctly and 4 were predicted as NORMAL.
+
+4. Heatmap Generation
 
 
 
